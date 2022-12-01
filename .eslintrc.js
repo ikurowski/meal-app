@@ -5,10 +5,11 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'airbnb',
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
+    'plugin:styled-components-a11y/strict',
     'plugin:prettier/recommended',
+    'airbnb',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -17,6 +18,9 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react'],
-  rules: {},
+  plugins: ['react', 'styled-components-a11y'],
+  rules: {
+    'no-multiple-empty-lines': 'error',
+    'react/prop-types': 'off',
+  },
 };
