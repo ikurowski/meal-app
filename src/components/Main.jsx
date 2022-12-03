@@ -4,7 +4,7 @@ import img from '../assets/meal.jpg';
 
 // components
 import Card from './Card';
-import Menu from './Menu';
+import Menu from './Menu/Menu';
 
 export default function Main() {
   return (
