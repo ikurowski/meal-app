@@ -22,5 +22,19 @@ module.exports = {
   rules: {
     'no-multiple-empty-lines': 'error',
     'react/prop-types': 'off',
+    'object-curly-newline': [
+      'error',
+      {
+        ObjectExpression: 'always',
+        ObjectPattern: {
+          multiline: true,
+        },
+        ImportDeclaration: 'never',
+        ExportDeclaration: {
+          multiline: true,
+          minProperties: 3,
+        },
+      },
+    ],
   },
 };
