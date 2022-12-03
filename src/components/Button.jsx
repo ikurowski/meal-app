@@ -8,6 +8,7 @@ export default function Button({
   ariaLabel,
   padding = '1rem',
   fontSize = '1rem',
+  moresStyles,
 }) {
   return (
     <ButtonStyled
@@ -15,6 +16,7 @@ export default function Button({
       aria-label={ariaLabel}
       padding={padding}
       fontSize={fontSize}
+      moresStyles={moresStyles}
     >
       {children}
     </ButtonStyled>
@@ -25,9 +27,10 @@ const ButtonStyled = styled.button`
   color: ${styles.color.textLight};
   padding: ${(props) => props.padding};
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 40px;
   font-size: ${(props) => props.fontSize};
   font-weight: bold;
+  ${(props) => props.moresStyles}
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
