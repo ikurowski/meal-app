@@ -19,16 +19,20 @@ export default function Card() {
 }
 
 const CardStyled = styled.div`
-  background-color: ${styles.color.secondaryDark};
-  padding: 1rem 2rem;
+  background-color: ${styles.color.secondary};
+  padding: 1rem;
   font-weight: 100;
   color: ${styles.color.textLight};
   text-align: center;
   width: 500px;
   border-radius: 1rem;
   box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.75);
+  & > p {
+    margin: 1rem;
+  }
 `;
 
 const H1 = styled.h1`
   font-size: 1.5rem;
+  font-weight: 400;
 `;
