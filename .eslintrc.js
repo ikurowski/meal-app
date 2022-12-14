@@ -36,5 +36,9 @@ module.exports = {
         },
       },
     ],
+    'implicit-arrow-linebreak': 'off', // FIXME
+    'react/jsx-one-expression-per-line': 'off',
+    'no-unused-vars': 'warn',
+    'react/jsx-no-bind': 'warn',
   },
 };
