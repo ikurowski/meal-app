@@ -9,9 +9,11 @@ export default function Button({
   padding = '1rem',
   fontSize = '1rem',
   moresStyles,
+  onClick,
 }) {
   return (
     <ButtonStyled
+      onClick={onClick}
       type="button"
       aria-label={ariaLabel}
       padding={padding}
