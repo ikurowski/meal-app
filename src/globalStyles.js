@@ -1,15 +1,27 @@
 import { createGlobalStyle } from 'styled-components';
 import styles from './styles';
+import { pixelToViewportWidth, breakpoints } from './utils/utils';
 
 const GlobalStyle = createGlobalStyle`
 * {
   box-sizing: border-box;
   margin: 0;
 }
+:root {
+  font-size: ${pixelToViewportWidth(24)};
 
+  @media (min-width: ${breakpoints.tablet}px) {
+    font-size: ${pixelToViewportWidth(18)};
+  }
+
+  @media (min-width: ${breakpoints.desktop}px) {
+    font-size: ${pixelToViewportWidth(16)};
+  }
+}
 
 body {
   background-color: ${styles.color.primary};
+  font-family: ${styles.font.main};
 }
 
 html, body, div, span, applet, object, iframe,
@@ -29,13 +41,9 @@ time, mark, audio, video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
 }
 
-html {
-  font-family: ${styles.font.main};
-}
 `;
 
 export default GlobalStyle;

@@ -3,31 +3,42 @@
 import React from 'react';
 import styled from 'styled-components';
 import styles from '../../styles';
-import Button from '../Button';
 
-export default function MenuItem({ title, description, price }) {
+// components
+import Button from '../Button';
+import Input from '../Input';
+
+export default function MenuItem({ title, description, price, id }) {
+  const priceFormatted = `$${price.toFixed(2)}`;
   return (
     <MenuItemContainer>
       <div>
         <Title>{title}</Title>
         <Description>{description}</Description>
-        <Price>{`$${price}`}</Price>
+        <Price>{priceFormatted}</Price>
       </div>
-      <Container>
-        <AmountContainer>
-          <Amount>Amount</Amount>
-          <Input type="number" />
-        </AmountContainer>
+      <Form>
+        <Input
+          input={{
+            id: `amount_${id}`,
+            type: 'number',
+            min: '1',
+            max: '5',
+            step: '1',
+            defaultValue: '1',
+          }}
+          label="Amount"
+        />
         <Button
           type="button"
           ariaLabel="add to cart"
-          padding="0.3rem 1rem"
+          padding="0.3rem 2rem"
           fontSize="0.7rem"
           moresStyles="margin: .5rem auto;"
         >
           Add
         </Button>
-      </Container>
+      </Form>
     </MenuItemContainer>
   );
 }
@@ -63,25 +74,7 @@ const Price = styled.p`
   color: ${styles.color.secondaryDark};
 `;
 
-const Container = styled.div`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
-`;
-
-const AmountContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const Amount = styled.h3`
-  font-weight: 600;
-`;
-
-const Input = styled.input`
-  width: 2rem;
-  margin: 0 0.5rem;
-  text-align: center;
-  border: 1px solid #aaa;
-  border-radius: 0.2rem;
 `;

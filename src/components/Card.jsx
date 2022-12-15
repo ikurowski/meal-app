@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import styles from '../styles';
+import { pixelToViewportWidth } from '../utils/utils';
 
 export default function Card() {
   return (
@@ -20,19 +21,20 @@ export default function Card() {
 
 const CardStyled = styled.div`
   background-color: ${styles.color.secondary};
-  padding: 1rem;
+  padding: ${pixelToViewportWidth(24)};
   font-weight: 100;
   color: ${styles.color.textLight};
   text-align: center;
-  width: 500px;
+  width: ${pixelToViewportWidth(600)};
   border-radius: 1rem;
   box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.75);
+
   & > p {
     margin: 1rem;
   }
 `;
 
 const H1 = styled.h1`
-  font-size: 1.5rem;
+  font-size: ${pixelToViewportWidth(36)};
   font-weight: 400;
 `;

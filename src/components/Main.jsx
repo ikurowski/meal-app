@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import img from '../assets/meal.jpg';
+import { pixelToViewportWidth } from '../utils/utils';
 
 // components
 import Card from './Card';
@@ -19,8 +20,9 @@ const MainStyled = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  height: 100vh; //FIXME
+  margin: ${pixelToViewportWidth(32)};
+  gap: ${pixelToViewportWidth(30)};
+  max-width: 100%;
 
   &::before {
     content: '';
@@ -28,7 +30,7 @@ const MainStyled = styled.main`
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 50vh;
+    height: ${pixelToViewportWidth(480)};
     background-image: url(${img});
     background-size: cover;
     background-position: center;

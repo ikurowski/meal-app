@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import styles from '../../styles';
+import { pixelToViewportWidth } from '../../utils/utils';
 
 import MenuItem from './MenuItem';
 
@@ -32,17 +33,20 @@ const DUMMY_MEALS = [
 ];
 
 export default function Menu() {
+  const mealsList = DUMMY_MEALS.map(({ id, name, description, price }) => (
+    <MenuItem
+      key={id}
+      title={name}
+      description={description}
+      price={price}
+      id={id}
+    />
+  ));
+
   return (
-    <MenuStyled>
-      {DUMMY_MEALS.map(({ id, name, description, price }) => (
-        <MenuItem
-          key={id}
-          title={name}
-          description={description}
-          price={price}
-        />
-      ))}
-    </MenuStyled>
+    <section>
+      <MenuStyled>{mealsList}</MenuStyled>
+    </section>
   );
 }
 
@@ -51,8 +55,8 @@ const MenuStyled = styled.ul`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 600px;
-  padding: 1rem 2rem;
+  width: ${pixelToViewportWidth(700)};
+  padding: ${pixelToViewportWidth(24)} ${pixelToViewportWidth(32)};
   background-color: ${styles.color.light};
   border-radius: 1rem;
   box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.75);
