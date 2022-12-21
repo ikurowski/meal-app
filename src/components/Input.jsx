@@ -1,22 +1,23 @@
 /* eslint-disable styled-components-a11y/label-has-for */
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 
-export default function Input({ input, label }) {
-  return (
-    <Container>
-      <Label htmlFor={input.id}>{label}</Label>
-      <InputStyled
-        type={input.type}
-        id={input.id}
-        min={input.min}
-        max={input.max}
-        step={input.step}
-        defaultValue={input.defaultValue}
-      />
-    </Container>
-  );
-}
+const Input = forwardRef(({ input, label }, ref) => (
+  <Container>
+    <Label htmlFor={input.id}>{label}</Label>
+    <InputStyled
+      ref={ref}
+      type={input.type}
+      id={input.id}
+      min={input.min}
+      max={input.max}
+      step={input.step}
+      defaultValue={input.defaultValue}
+    />
+  </Container>
+));
+
+export default Input;
 
 const Label = styled.label`
   font-weight: bold;
