@@ -20,7 +20,6 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body {
-  background-color: ${styles.color.primary};
   font-family: ${styles.font.main};
 }
 
