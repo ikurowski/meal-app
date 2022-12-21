@@ -1,49 +1,34 @@
-import React, { useCallback } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import styles from '../../styles';
+
+// context
+import CartContext from '../../store/CartContext';
+import CartItem from './CartItem';
+
+// components
 import Button from '../Button';
 
 export default function Cart({ hideModal }) {
-  const DUMMY_CART = [
-    {
-      id: 'm1',
-      name: 'Sushi',
-      price: 22.99,
-    },
-    {
-      id: 'm3',
-      name: 'Barbecue Burger',
-      price: 11.99,
-    },
-  ];
+  const { items, totalAmount, addItem, removeItem } = useContext(CartContext);
 
-  const onClickHandler = useCallback(() => {
-    hideModal();
-  }, [hideModal]);
-
-  const cartList = DUMMY_CART.map(({ id, name, price }) => (
-    <CartItem key={id}>
-      <div>
-        <h3>{name}</h3>
-        <p>{price} </p>
-      </div>
-      <Buttons>
-        <button onClick={onClickHandler} aria-label="remove item" type="button">
-          -
-        </button>
-        <button onClick={() => {}} aria-label="add item" type="button">
-          +
-        </button>
-      </Buttons>
-    </CartItem>
+  const totalAmountFormatted = totalAmount.toFixed(2);
+  const hasItems = totalAmount > 0;
+  const cartList = items.map((item) => (
+    <CartItem
+      key={item.id}
+      item={item}
+      addItem={addItem}
+      removeItem={removeItem}
+    />
   ));
 
   return (
     <CartStyled>
-      <CartList>{cartList}</CartList>
+      <ul>{cartList}</ul>
       <TotalAmount>
         <span>Total Amount</span>
-        <span>$34.98</span>
+        <span>{totalAmountFormatted}</span>
       </TotalAmount>
       <Buttons>
         <Button
@@ -53,7 +38,7 @@ export default function Cart({ hideModal }) {
         >
           Close
         </Button>
-        <Button padding="0.5rem 2rem">Order</Button>
+        {hasItems ? <Button padding="0.5rem 2rem">Order</Button> : null}
       </Buttons>
     </CartStyled>
   );
@@ -67,23 +52,6 @@ const CartStyled = styled.div`
   border-radius: 12px;
   padding: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-`;
-
-const CartItem = styled.li`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #000;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-
-  &:last-child {
-    margin-bottom: 0px;
-  }
-`;
-
-const CartList = styled.ul`
-  list-style: none;
 `;
 
 const TotalAmount = styled.div`
