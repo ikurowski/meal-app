@@ -1,6 +1,5 @@
-/* eslint-disable no-param-reassign */
 /* eslint-disable operator-linebreak */
-import React, { useMemo, useReducer, useEffect } from 'react';
+import React, { useMemo, useReducer } from 'react';
 import CartContext from './CartContext';
 
 const defaultCartState = {
@@ -9,18 +8,16 @@ const defaultCartState = {
 };
 
 function cartReducer(state, action) {
-  const updatedTotalAmount =
-    state.totalAmount + action.item.price * action.item.amount;
-
-  const itemMatchIndex = state.items.findIndex(
-    (item) => item.id === action.item.id,
-  );
-
-  const itemMatch = state.items[itemMatchIndex];
-  let updatedItems;
-
   // ADD ITEMS
   if (action.type === 'addItem') {
+    const itemMatchIndex = state.items.findIndex(
+      (item) => item.id === action.item.id,
+    );
+    const itemMatch = state.items[itemMatchIndex];
+    const updatedTotalAmount =
+      state.totalAmount + action.item.price * action.item.amount;
+    let updatedItems;
+
     if (itemMatch) {
       const updatedItem = {
         ...itemMatch,
@@ -40,8 +37,22 @@ function cartReducer(state, action) {
 
   // REMOVE ITEMS
   if (action.type === 'removeItem') {
-    if (itemMatch.amount) {
-      updatedItems[itemMatchIndex].remove();
+    const itemMatchIndex = state.items.findIndex(
+      (item) => item.id === action.id,
+    );
+    const itemMatch = state.items[itemMatchIndex];
+    const updatedTotalAmount = state.totalAmount - itemMatch.price;
+    let updatedItems;
+
+    if (itemMatch.amount === 1) {
+      updatedItems = state.items.filter((item) => item.id !== action.id);
+    } else {
+      const updatedItem = {
+        ...itemMatch,
+        amount: itemMatch.amount - 1,
+      };
+      updatedItems = [...state.items];
+      updatedItems[itemMatchIndex] = updatedItem;
     }
     return {
       items: updatedItems,
