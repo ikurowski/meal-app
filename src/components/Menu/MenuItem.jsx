@@ -1,24 +1,45 @@
-/* eslint-disable styled-components-a11y/iframe-has-title */
-/* eslint-disable styled-components-a11y/html-has-lang */
-import React from 'react';
+/* eslint-disable styled-components-a11y/iframe-has-title */ // lib error
+/* eslint-disable styled-components-a11y/html-has-lang */ // lib error
+import React, { useContext, useRef } from 'react';
 import styled from 'styled-components';
 import styles from '../../styles';
+
+// context
+import CartContext from '../../store/CartContext';
 
 // components
 import Button from '../Button';
 import Input from '../Input';
 
 export default function MenuItem({ title, description, price, id }) {
-  const priceFormatted = `$${price.toFixed(2)}`;
+  const { items, addItem } = useContext(CartContext);
+  const refInputAmount = useRef();
+
+  const priceFormatted = price.toFixed(2);
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    const enteredRefNumber = Number(refInputAmount.current.value);
+
+    const item = {
+      price: priceFormatted,
+      id,
+      title,
+      amount: enteredRefNumber,
+    };
+    addItem(item);
+  };
   return (
     <MenuItemContainer>
       <div>
         <Title>{title}</Title>
         <Description>{description}</Description>
-        <Price>{priceFormatted}</Price>
+        <Price>${priceFormatted}</Price>
       </div>
-      <Form>
+      <Form onSubmit={submitHandler}>
         <Input
+          ref={refInputAmount}
           input={{
             id: `amount_${id}`,
             type: 'number',
@@ -30,7 +51,7 @@ export default function MenuItem({ title, description, price, id }) {
           label="Amount"
         />
         <Button
-          type="button"
+          type="submit"
           ariaLabel="add to cart"
           padding="0.3rem 2rem"
           fontSize="0.7rem"
