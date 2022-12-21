@@ -10,11 +10,12 @@ export default function Button({
   fontSize = '1rem',
   moresStyles,
   onClick,
+  type,
 }) {
   return (
     <ButtonStyled
       onClick={onClick}
-      type="button"
+      type={type}
       aria-label={ariaLabel}
       padding={padding}
       fontSize={fontSize}
@@ -24,6 +25,7 @@ export default function Button({
     </ButtonStyled>
   );
 }
+
 const ButtonStyled = styled.button`
   background-color: ${styles.color.primaryDark};
   color: ${styles.color.textLight};
