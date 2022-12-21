@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import GlobalStyle from './globalStyles';
+import CartProvider from './store/CartProvider';
 
 // components
 import Header from './components/Header';
@@ -17,12 +18,12 @@ function App() {
     setModalIsVisible(false);
   };
   return (
-    <>
+    <CartProvider>
       <GlobalStyle />
       <Header showModal={showModal} />
       <Main />
       {modalIsVisible ? <Modal hideModal={hideModal} /> : null}
-    </>
+    </CartProvider>
   );
 }
 
