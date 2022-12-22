@@ -33,7 +33,6 @@ export default function Cart({ hideModal }) {
       </TotalAmount>
     </>
   );
-  console.log('items', items);
   return (
     <CartStyled>
       {hasItems ? cartWithItems : emptyCart}
