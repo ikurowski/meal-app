@@ -11,19 +11,16 @@ import Button from './Button';
 
 const bump = keyframes`
    0% {
-      transform: scale(1);
+      background-color: ${styles.color.secondary};
     }
-    10% {
-      transform: scale(0.9);
+    33% {
+      background-color: ${styles.color.tetriary};
     }
-    30% {
-      transform: scale(1.1);
-    }
-    50% {
-      transform: scale(1.3);
+    66% {
+      background-color: ${styles.color.quaternary};
     }
     100% {
-      transform: scale(1);
+      background-color: ${styles.color.primaryDark};
     }
 `;
 
@@ -58,11 +55,16 @@ export default function Header({ showModal }) {
 
   return (
     <HeaderStyled>
-      <Logo href=".">MealsUp</Logo>
+      <Logo href=".">Meal Me</Logo>
       <Button
         onClick={showModal}
         ariaLabel="your cart"
-        moresStyles={animation && bumpAnimation}
+        type="button"
+        moreStyles={[
+          animation && bumpAnimation,
+          'height: 100%;',
+          `border-left: 2px solid ${styles.color.primaryDark};`,
+        ]}
       >
         Your Cart {cartContext.items.length ? itemsInCart : null}
       </Button>
@@ -73,21 +75,24 @@ const HeaderStyled = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: ${pixelToViewportWidth(16)} ${pixelToViewportWidth(48)};
-  background-color: ${styles.color.secondary};
+  height: ${pixelToViewportWidth(70)};
+  background-color: ${styles.color.primaryLight};
+  border: 2px solid ${styles.color.primaryDark};
 `;
 
 const Logo = styled.a`
-  color: ${styles.color.textLight};
-  font-size: ${pixelToViewportWidth(32)};
-  font-weight: bold;
+  color: ${styles.color.primaryDark};
+  font-size: ${pixelToViewportWidth(48)};
+  font-weight: 700;
   text-decoration: none;
+  text-align: center;
+  margin-left: 1rem;
 `;
 
 const Badge = styled.span`
   background-color: ${styles.color.secondary};
   color: ${styles.color.textLight};
   padding: 0.2rem 0.7rem;
-  border-radius: 25px;
+  border-radius: 50px;
   margin-left: 0.5rem;
 `;

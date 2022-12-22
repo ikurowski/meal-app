@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { pixelToViewportWidth } from '../utils/utils';
 
 import styles from '../styles';
 
 export default function Button({
   children,
   ariaLabel,
-  padding = '1rem',
+  padding = `${pixelToViewportWidth(10)} ${pixelToViewportWidth(30)}`,
   fontSize = '1rem',
-  moresStyles,
+  moreStyles,
   onClick,
   type,
 }) {
@@ -19,7 +20,7 @@ export default function Button({
       aria-label={ariaLabel}
       padding={padding}
       fontSize={fontSize}
-      moresStyles={moresStyles}
+      moreStyles={moreStyles}
     >
       {children}
     </ButtonStyled>
@@ -28,15 +29,14 @@ export default function Button({
 
 const ButtonStyled = styled.button`
   background-color: ${styles.color.primaryDark};
-  color: ${styles.color.textLight};
+  color: ${styles.color.primaryLight};
   padding: ${(props) => props.padding};
   border: none;
-  border-radius: 40px;
   font-size: ${(props) => props.fontSize};
-  font-weight: bold;
-  ${(props) => props.moresStyles}
+  font-weight: 500;
+  ${(props) => [props.moreStyles]}
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 
   &:hover {
     scale: 1.1;

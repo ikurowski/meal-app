@@ -22,14 +22,19 @@ export default function Cart({ hideModal }) {
       removeItem={removeItem}
     />
   ));
-
-  return (
-    <CartStyled>
+  const emptyCart = <H3>Your cart is empty</H3>;
+  const cartWithItems = (
+    <>
       <ul>{cartList}</ul>
       <TotalAmount>
         <span>Total Amount</span>
-        <span>{totalAmountFormatted}</span>
+        <span>${totalAmountFormatted}</span>
       </TotalAmount>
+    </>
+  );
+  return (
+    <CartStyled>
+      {hasItems ? cartWithItems : emptyCart}
       <Buttons>
         <Button
           onClick={hideModal}
@@ -49,7 +54,6 @@ const CartStyled = styled.div`
   max-width: 30rem;
   max-height: 40rem;
   background-color: white;
-  border-radius: 12px;
   padding: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 `;
@@ -61,6 +65,14 @@ const TotalAmount = styled.div`
   margin-top: 1rem;
   font-weight: bold;
   font-size: 1.2rem;
+`;
+
+const H3 = styled.h3`
+  display: flex;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin: 2rem 0;
+  font-weight: 700;
 `;
 
 const Buttons = styled.div`

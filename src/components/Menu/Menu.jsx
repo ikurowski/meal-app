@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import styles from '../../styles';
-import { pixelToViewportWidth } from '../../utils/utils';
 
 import MenuItem from './MenuItem';
 
@@ -30,6 +29,12 @@ const DUMMY_MEALS = [
     description: 'Healthy...and green...',
     price: 18.99,
   },
+  {
+    id: 'm5',
+    name: 'Ramen',
+    description: 'Japanese noodle soup',
+    price: 20.99,
+  },
 ];
 
 export default function Menu() {
@@ -53,11 +58,11 @@ export default function Menu() {
 const MenuStyled = styled.ul`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  border: 2px solid ${styles.color.primaryDark};
+  border-bottom: 0;
+  border-left: 0;
   align-items: center;
   justify-content: center;
-  width: ${pixelToViewportWidth(700)};
-  padding: ${pixelToViewportWidth(24)} ${pixelToViewportWidth(32)};
-  background-color: ${styles.color.light};
-  border-radius: 1rem;
-  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.75);
+  background-color: ${styles.color.primaryLight};
 `;

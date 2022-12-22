@@ -2,10 +2,9 @@ const styles = {
   color: {
     primaryLight: '#FFFFFF',
     primaryDark: '#292929',
-    secondary: '#232',
-    secondaryDark: '#b56576',
-    textLight: '#fffc8b',
-    light: '#f4f1de',
+    secondary: '#26988E',
+    tetriary: '#FFC906',
+    quaternary: '#FD8EE6',
   },
   font: {
     main: '"Familjen Grotesk", sans-serif',

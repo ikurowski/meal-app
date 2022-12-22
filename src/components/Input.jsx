@@ -1,6 +1,7 @@
 /* eslint-disable styled-components-a11y/label-has-for */
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
+import { pixelToViewportWidth } from '../utils/utils';
 
 const Input = forwardRef(({ input, label }, ref) => (
   <Container>
@@ -24,11 +25,11 @@ const Label = styled.label`
 `;
 
 const InputStyled = styled.input`
-  width: 3rem;
+  width: ${pixelToViewportWidth(50)};
+  font-size: ${pixelToViewportWidth(12)};
   margin: 0 0.5rem;
   text-align: center;
-  border: 1px solid #aaa;
-  border-radius: 0.2rem;
+  border: 1px solid #000;
 `;
 
 const Container = styled.div`

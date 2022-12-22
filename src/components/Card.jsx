@@ -2,39 +2,38 @@ import React from 'react';
 import styled from 'styled-components';
 import styles from '../styles';
 import { pixelToViewportWidth } from '../utils/utils';
+import Button from './Button';
 
-export default function Card() {
+export default function Card({
+  header,
+  text,
+  buttonText,
+  backgroundColor = styles.color.secondary,
+  moreStyles,
+}) {
   return (
-    <CardStyled>
-      <H1>Delicious Food, Delivered To You</H1>
-      <p>
-        Choose your favorite meal from our broad selection of available meals
-        and enjoy a delicious lunch or dinner at home.
-      </p>
-      <p>
-        All our meals are cooked with high-quality ingredients, just-in-time and
-        of course by experienced chefs!
-      </p>
+    <CardStyled moreStyles={moreStyles} backgroundColor={backgroundColor}>
+      <H1>{header}</H1>
+      <p>{text}</p>
+      <Button>{buttonText}</Button>
     </CardStyled>
   );
 }
 
 const CardStyled = styled.div`
+  border: 0 solid ${styles.color.primaryDark};
   background-color: ${styles.color.secondary};
-  padding: ${pixelToViewportWidth(24)};
-  font-weight: 100;
-  color: ${styles.color.textLight};
-  text-align: center;
-  width: ${pixelToViewportWidth(600)};
-  border-radius: 1rem;
-  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.75);
+  font-weight: 500;
+  color: ${styles.color.primaryDark};
+  background-color: ${(props) => props.backgroundColor};
+  ${(props) => props.moreStyles}
 
   & > p {
-    margin: 1rem;
+    margin: 1rem 0;
   }
 `;
 
 const H1 = styled.h1`
   font-size: ${pixelToViewportWidth(36)};
-  font-weight: 400;
+  font-weight: 700;
 `;

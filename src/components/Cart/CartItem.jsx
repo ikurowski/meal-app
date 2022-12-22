@@ -17,24 +17,24 @@ export default function CartItem({ item, removeItem, addItem }) {
     <CartItemStyled>
       <div>
         <h3>{item.title}</h3>
-        <p>{item.price}</p>
+        <p>${item.price}</p>
         <p>Amount: {item.amount}</p>
       </div>
       <Buttons>
-        <button
+        <Button
           onClick={() => removerItemHandler(item.id)}
           aria-label="remove item"
           type="button"
         >
           -
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => addItemHandler(item)}
           aria-label="add item"
           type="button"
         >
           +
-        </button>
+        </Button>
       </Buttons>
     </CartItemStyled>
   );
@@ -42,8 +42,15 @@ export default function CartItem({ item, removeItem, addItem }) {
 const Buttons = styled.div`
   display: flex;
   justify-content: flex-end;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-top: 1rem;
+`;
+
+const Button = styled.button`
+  width: 2rem;
+  background-color: transparent;
+  border: 1px solid #000;
+  border-radius: 0;
 `;
 
 const CartItemStyled = styled.li`

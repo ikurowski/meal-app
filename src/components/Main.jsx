@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import img from '../assets/meal.jpg';
+import styles from '../styles';
 import { pixelToViewportWidth } from '../utils/utils';
 
 // components
@@ -10,31 +10,65 @@ import Menu from './Menu/Menu';
 export default function Main() {
   return (
     <MainStyled>
-      <Card />
-      <Menu />
+      <Container>
+        <Card
+          header="Lorem ipsum dolor sit amet consectetur adipisicing elit"
+          text="Lorem ipsum dolor sit amet consectetur adipisicing elit"
+          buttonText="Lorem ipsum"
+          moreStyles={[
+            'flex: 1;',
+            'border-right-width: 2px;',
+            `color: ${styles.color.primaryLight};`,
+            `padding: ${pixelToViewportWidth(10, 1024)} ${pixelToViewportWidth(
+              10,
+              1024,
+            )};`,
+          ]}
+        />
+        <Menu />
+      </Container>
+      <Container2>
+        <Card
+          header="Lorem ipsum dolor sit amet consectetur adipisicing elit"
+          text="Lorem ipsum dolor sit amet consectetur adipisicing elit"
+          buttonText="Lorem ipsum"
+          backgroundColor={styles.color.tetriary}
+          moreStyles={[
+            'height: 50%;',
+            'border-bottom-width: 2px;',
+            `padding: ${pixelToViewportWidth(30)} ${pixelToViewportWidth(
+              100,
+            )};`,
+          ]}
+        />
+        <Card
+          header="Lorem ipsum dolor sit amet consectetur adipisicing elit"
+          text="Lorem ipsum dolor sit amet consectetur adipisicing elit"
+          backgroundColor={styles.color.quaternary}
+          buttonText="Lorem ipsum"
+          moreStyles={[
+            'height: 50%;',
+            `padding: ${pixelToViewportWidth(30)} ${pixelToViewportWidth(
+              100,
+            )};`,
+          ]}
+        />
+      </Container2>
     </MainStyled>
   );
 }
 const MainStyled = styled.main`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: ${pixelToViewportWidth(32)};
-  gap: ${pixelToViewportWidth(30)};
-  max-width: 100%;
+  border: 2px solid ${styles.color.primaryDark};
+  border-top: 0;
+`;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: ${pixelToViewportWidth(480)};
-    background-image: url(${img});
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
-    opacity: 60%;
-  }
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const Container2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-basis: 50%;
 `;
