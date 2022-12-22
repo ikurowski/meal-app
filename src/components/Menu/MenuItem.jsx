@@ -12,7 +12,7 @@ import Button from '../Button';
 import Input from '../Input';
 
 export default function MenuItem({ title, description, price, id }) {
-  const { items, addItem } = useContext(CartContext);
+  const { addItem } = useContext(CartContext);
   const refInputAmount = useRef();
 
   const priceFormatted = price.toFixed(2);
@@ -55,7 +55,7 @@ export default function MenuItem({ title, description, price, id }) {
           ariaLabel="add to cart"
           padding="0.3rem 2rem"
           fontSize="0.7rem"
-          moresStyles="margin: .5rem auto;"
+          moreStyles="margin: .5rem auto;"
         >
           Add
         </Button>
@@ -69,12 +69,11 @@ const MenuItemContainer = styled.li`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+  border-bottom: 2px solid ${styles.color.primaryDark};
+  padding: 10px;
 
   &:last-child {
-    margin-bottom: 0px;
+    border-bottom: none;
   }
 
   & p {
