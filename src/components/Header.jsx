@@ -29,7 +29,7 @@ const bumpAnimation = css`
 `;
 
 export default function Header({ showModal }) {
-  const [animation, setAnimation] = useState(false);
+  const [animationOn, setAnimationOn] = useState(false);
   const cartContext = useContext(CartContext);
   const numberOfMealsInCart = cartContext.items.reduce(
     (acc, item) => acc + item.amount,
@@ -40,10 +40,10 @@ export default function Header({ showModal }) {
     if (cartContext.items.length === 0) {
       return undefined;
     }
-    setAnimation(true);
+    setAnimationOn(true);
 
     const timer = setTimeout(() => {
-      setAnimation(false);
+      setAnimationOn(false);
     }, 300);
 
     return () => {
@@ -61,7 +61,7 @@ export default function Header({ showModal }) {
         ariaLabel="your cart"
         type="button"
         moreStyles={[
-          animation && bumpAnimation,
+          animationOn && bumpAnimation,
           'height: 100%;',
           `border-left: 2px solid ${styles.color.primaryDark};`,
         ]}

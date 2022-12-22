@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import styles from '../styles';
 import { pixelToViewportWidth } from '../utils/utils';
+
+// components
 import Button from './Button';
 
 export default function Card({

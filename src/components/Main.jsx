@@ -19,10 +19,7 @@ export default function Main() {
             'flex: 1;',
             'border-right-width: 2px;',
             `color: ${styles.color.primaryLight};`,
-            `padding: ${pixelToViewportWidth(10, 1024)} ${pixelToViewportWidth(
-              10,
-              1024,
-            )};`,
+            `padding: ${pixelToViewportWidth(30)} ${pixelToViewportWidth(30)};`,
           ]}
         />
         <Menu />

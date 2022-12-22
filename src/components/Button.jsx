@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { pixelToViewportWidth } from '../utils/utils';
-
 import styles from '../styles';
 
 export default function Button({

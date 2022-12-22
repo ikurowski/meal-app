@@ -17,6 +17,7 @@ function App() {
   const hideModal = () => {
     setModalIsVisible(false);
   };
+
   return (
     <CartProvider>
       <GlobalStyle />
