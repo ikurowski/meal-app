@@ -13,7 +13,7 @@ export default function Cart({ hideModal }) {
   const { items, totalAmount, addItem, removeItem } = useContext(CartContext);
 
   const totalAmountFormatted = totalAmount.toFixed(2);
-  const hasItems = totalAmount > 0;
+  const hasItems = items.length > 0;
   const cartList = items.map((item) => (
     <CartItem
       key={item.id}
@@ -22,6 +22,7 @@ export default function Cart({ hideModal }) {
       removeItem={removeItem}
     />
   ));
+
   const emptyCart = <H3>Your cart is empty</H3>;
   const cartWithItems = (
     <>
@@ -32,6 +33,7 @@ export default function Cart({ hideModal }) {
       </TotalAmount>
     </>
   );
+  console.log('items', items);
   return (
     <CartStyled>
       {hasItems ? cartWithItems : emptyCart}
