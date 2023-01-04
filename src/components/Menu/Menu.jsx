@@ -1,44 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { getMenu } from '../../api';
 import styles from '../../styles';
 
 import MenuItem from './MenuItem';
 
-const DUMMY_MEALS = [
-  {
-    id: 'm1',
-    name: 'Sushi',
-    description: 'Finest fish and veggies',
-    price: 22.99,
-  },
-  {
-    id: 'm2',
-    name: 'Schnitzel',
-    description: 'A german specialty!',
-    price: 16.5,
-  },
-  {
-    id: 'm3',
-    name: 'Barbecue Burger',
-    description: 'American, raw, meaty',
-    price: 12.99,
-  },
-  {
-    id: 'm4',
-    name: 'Green Bowl',
-    description: 'Healthy...and green...',
-    price: 18.99,
-  },
-  {
-    id: 'm5',
-    name: 'Ramen',
-    description: 'Japanese noodle soup',
-    price: 20.99,
-  },
-];
-
 export default function Menu() {
-  const mealsList = DUMMY_MEALS.map(({ id, name, description, price }) => (
+  const [fetchMenu, setFetchMenu] = useState({
+    menu: [],
+    state: null,
+  });
+
+  useEffect(() => {
+    getMenu(setFetchMenu);
+  }, []);
+
+  const mealsList = fetchMenu.menu.map(({ id, name, description, price }) => (
     <MenuItem
       key={id}
       title={name}
