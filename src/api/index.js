@@ -6,8 +6,8 @@ export const status = {
   pending: 2,
 };
 
-export async function getMenu(setFetchMenu) {
-  setFetchMenu({
+export async function getMenu(setFetchedMenu) {
+  setFetchedMenu({
     status: status.pending,
     menu: [],
   });
@@ -21,12 +21,12 @@ export async function getMenu(setFetchMenu) {
       ...itemElements,
     }));
 
-    setFetchMenu({
+    setFetchedMenu({
       status: status.resolved,
       menu: menuArray,
     });
   } catch (error) {
-    setFetchMenu({
+    setFetchedMenu({
       status: status.rejected,
       menu: [],
     });
