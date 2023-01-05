@@ -30,6 +30,5 @@ export async function getMenu(setFetchedMenu) {
       status: status.rejected,
       menu: [],
     });
-    console.error(error);
   }
 }
