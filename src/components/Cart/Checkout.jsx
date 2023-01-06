@@ -6,7 +6,7 @@ function isEmpty(value) {
   return value.trim() === '';
 }
 
-export default function Checkout({ onCancelClick }) {
+export default function Checkout({ onCancelClick, onCheckout }) {
   const [
     { nameIsValid, emailIsValid, addressIsValid, cityIsValid },
     setInputValidity,
@@ -51,7 +51,12 @@ export default function Checkout({ onCancelClick }) {
       return;
     }
 
-    console.log('submit');
+    onCheckout({
+      name: enteredName,
+      email: enteredEmail,
+      address: enteredAddress,
+      city: enteredCity,
+    });
   };
   return (
     <Form onSubmit={handleSubmit}>

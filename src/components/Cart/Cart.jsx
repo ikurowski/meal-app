@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
+import { postOrder, status } from '../../api';
 import styles from '../../styles';
 
 // context
@@ -8,9 +9,22 @@ import CartItem from './CartItem';
 
 // components
 import Button from '../Button';
+import Checkout from './Checkout';
 
 export default function Cart({ hideModal }) {
-  const { items, totalAmount, addItem, removeItem } = useContext(CartContext);
+  const { items, totalAmount, addItem, removeItem, clearCart } =
+    useContext(CartContext);
+  const [isCheckout, setIsCheckout] = useState(false);
+  const [postStatus, setPostStatus] = useState(null);
+
+  const orderHandler = (event) => {
+    event.preventDefault();
+    setIsCheckout(true);
+  };
+  const checkoutHandler = (userData) => {
+    postOrder(items, userData, setPostStatus);
+    clearCart();
+  };
 
   const totalAmountFormatted = totalAmount.toFixed(2);
   const hasItems = items.length > 0;
@@ -33,21 +47,63 @@ export default function Cart({ hideModal }) {
       </TotalAmount>
     </>
   );
-  return (
-    <CartStyled>
-      {hasItems ? cartWithItems : emptyCart}
-      <Buttons>
-        <Button
-          onClick={hideModal}
-          padding="0.5rem 2rem"
-          moresStyles={`background-color: ${styles.color.secondary};`}
-        >
-          Close
+
+  const modalButtons = (
+    <Buttons>
+      <Button onClick={hideModal} padding="0.5rem 2rem">
+        Close
+      </Button>
+      {hasItems ? (
+        <Button type="submit" padding="0.5rem 2rem" onClick={orderHandler}>
+          Order
         </Button>
-        {hasItems ? <Button padding="0.5rem 2rem">Order</Button> : null}
-      </Buttons>
-    </CartStyled>
+      ) : null}
+    </Buttons>
   );
+  switch (postStatus) {
+    case status.pending:
+      return (
+        <CartStyled>
+          <H3>Sending order ...</H3>
+        </CartStyled>
+      );
+    case status.rejected:
+      return (
+        <CartStyled>
+          <H3>Something went wrong!</H3>
+          <Button
+            onClick={hideModal}
+            padding="0.5rem 2rem"
+            moreStyles="display: block; margin: 0 auto;"
+          >
+            Close
+          </Button>
+        </CartStyled>
+      );
+    case status.resolved:
+      return (
+        <CartStyled>
+          <H3>Successfully sent the order!</H3>
+          <Button
+            onClick={hideModal}
+            padding="0.5rem 2rem"
+            moreStyles="display: block; margin: 0 auto;"
+          >
+            Close
+          </Button>
+        </CartStyled>
+      );
+    default:
+      return (
+        <CartStyled>
+          {hasItems ? cartWithItems : emptyCart}
+          {isCheckout && (
+            <Checkout onCancelClick={hideModal} onCheckout={checkoutHandler} />
+          )}
+          {!isCheckout && modalButtons}
+        </CartStyled>
+      );
+  }
 }
 
 const CartStyled = styled.div`

@@ -1,4 +1,3 @@
-/* eslint-disable operator-linebreak */
 import React, { useMemo, useReducer } from 'react';
 import CartContext from './CartContext';
 
@@ -59,6 +58,11 @@ function cartReducer(state, action) {
       totalAmount: updatedTotalAmount,
     };
   }
+
+  // CLEAR CART
+  if (action.type === 'clearCart') {
+    return defaultCartState;
+  }
   return defaultCartState;
 }
 
@@ -81,12 +85,19 @@ export default function CartProvider({ children }) {
     });
   };
 
+  const clearCart = () => {
+    dispatchCartAction({
+      type: 'clearCart',
+    });
+  };
+
   const cartContext = useMemo(
     () => ({
       items: cartState.items,
       totalAmount: cartState.totalAmount,
       addItem,
       removeItem,
+      clearCart,
     }),
     [cartState],
   );
