@@ -47,10 +47,23 @@ const Buttons = styled.div`
 `;
 
 const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 2rem;
   background-color: transparent;
   border: 1px solid #000;
   border-radius: 0;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
 const CartItemStyled = styled.li`
