@@ -7,7 +7,6 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
-    'plugin:styled-components-a11y/strict',
     'plugin:prettier/recommended',
     'airbnb',
   ],
@@ -18,7 +17,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', 'styled-components-a11y'],
+  plugins: ['react'],
   rules: {
     'no-multiple-empty-lines': 'error',
     'react/prop-types': 'off',
