@@ -40,5 +40,6 @@ module.exports = {
     'no-unused-vars': 'warn',
     'react/jsx-no-bind': 'warn',
     'operator-linebreak': 'off',
+    'no-console': 'off',
   },
 };

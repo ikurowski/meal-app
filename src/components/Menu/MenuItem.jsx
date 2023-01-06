@@ -1,5 +1,3 @@
-/* eslint-disable styled-components-a11y/iframe-has-title */ // lib error
-/* eslint-disable styled-components-a11y/html-has-lang */ // lib error
 import React, { useContext, useRef } from 'react';
 import styled from 'styled-components';
 import styles from '../../styles';

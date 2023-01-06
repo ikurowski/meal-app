@@ -1,4 +1,3 @@
-/* eslint-disable styled-components-a11y/label-has-for */
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { pixelToViewportWidth } from '../utils/utils';

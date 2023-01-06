@@ -1,5 +1,3 @@
-/* eslint-disable styled-components-a11y/click-events-have-key-events */
-/* eslint-disable styled-components-a11y/no-static-element-interactions */
 import React, { useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';

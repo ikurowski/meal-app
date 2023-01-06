@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { postOrder, status } from '../../api';
-import styles from '../../styles';
 
 // context
 import CartContext from '../../store/CartContext';
