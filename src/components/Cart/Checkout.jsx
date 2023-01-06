@@ -109,15 +109,15 @@ export default function Checkout({ onCancelClick, onCheckout }) {
         )}
       </Label>
       <Buttons>
-        <Button moreStyles="font-weight: bold;" type="submit">
-          Checkout
-        </Button>
         <Button
           onClick={onCancelClick}
           moreStyles="font-weight: bold;"
           type="button"
         >
           Cancel
+        </Button>
+        <Button moreStyles="font-weight: bold;" type="submit">
+          Checkout
         </Button>
       </Buttons>
     </Form>
