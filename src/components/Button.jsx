@@ -33,9 +33,9 @@ const ButtonStyled = styled.button`
   border: none;
   font-size: ${(props) => props.fontSize};
   font-weight: 500;
-  ${(props) => [props.moreStyles]}
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  ${(props) => [props.moreStyles]}
 
   &:hover {
     scale: 1.1;
