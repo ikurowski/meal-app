@@ -32,3 +32,22 @@ export async function getMenu(setFetchedMenu) {
     });
   }
 }
+
+export async function postOrder(items, userData, setPostStatus) {
+  setPostStatus(status.pending);
+  try {
+    const order = {
+      ...items,
+      ...userData,
+    };
+    await axios.post(
+      'https://meal-app-eee91-default-rtdb.europe-west1.firebasedatabase.app/orders.json',
+      order,
+    );
+    setPostStatus(status.resolved);
+    console.log(order);
+  } catch (error) {
+    setPostStatus(status.rejected);
+    console.log(error);
+  }
+}
