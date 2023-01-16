@@ -18,7 +18,7 @@ function Backdrop({ hideModal }) {
   );
 
   return (
-    <BackdropStyled onClick={backdropClickHandler}>
+    <BackdropStyled onMouseDown={backdropClickHandler}>
       <Cart hideModal={hideModal} />
     </BackdropStyled>
   );
